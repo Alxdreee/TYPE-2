@@ -1,3 +1,4 @@
+<img width="4075" height="2707" alt="04082026-DSCF3199" src="https://github.com/user-attachments/assets/cd1b3b7e-aa40-4ded-a41d-b8b56810e9c8" />
 <div align="center">
   <h1>TYPE 2 SYNTH</h1>
   <p><i>A Standalone ESP32-S3 Polyphonic Synthesizer</i></p>
@@ -8,6 +9,9 @@
 </div>
 
 <br>
+  
+![Uploading 04082026-DSCF3199.png…]()
+
 
 > **Note:** This synthesizer started out as a school project as part of my studies in physics and engineering, and gradually evolved into a true passion for digital audio and audio hardware design.
 
