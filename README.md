@@ -9,9 +9,6 @@
 </div>
 
 <br>
-  
-![Uploading 04082026-DSCF3199.png…]()
-
 
 > **Note:** This synthesizer started out as a school project as part of my studies in physics and engineering, and gradually evolved into a true passion for digital audio and audio hardware design.
 
