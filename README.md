@@ -39,6 +39,7 @@ Designed with accessibility in mind, it is highly affordable (around €35 in to
 - [x] Tube overdrive, analog slop, and delay effects
 - [x] Real-time topological grid UI and hierarchical menu
 - [ ] Advanced firmware optimization
+- [ ] Manage the creation of presets from a dedicated menu
 - [ ] External MIDI communication (USB/Serial)
 - [ ] ESP32 Bluetooth communication integration
 - [ ] Battery management and portable power components integration
