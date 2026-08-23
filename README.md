@@ -3,7 +3,9 @@
 **Version:** v0.0.0  
 **Author:** Alexandre Esnard  
 
-The TYPE-2 is a microcontroller-based hybrid polyphonic synthesizer. Engineered entirely around a highly optimized DSP core, it leverages fast polynomial saturation, a dual-rate processing architecture, and analog-modeled filters to deliver a heavy, studio-quality audio signal flow. Designed with accessibility in mind, it is highly affordable (around €35 in total components) and features a near-zero difficulty build process requiring minimal wiring.
+The TYPE-2 is a microcontroller-based hybrid polyphonic synthesizer. Engineered entirely around a highly optimized DSP core, it leverages fast polynomial saturation, a dual-rate processing architecture, and analog-modeled filters to deliver a heavy, studio-quality audio signal flow.
+
+Designed with accessibility in mind, it is highly affordable (around €35 in total components) and features a near-zero difficulty build process requiring minimal wiring.
 
 ## Hardware BOM
 * ESP32-S3 Microcontroller (16MB Flash, PSRAM strictly required)
