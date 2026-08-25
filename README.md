@@ -1,6 +1,10 @@
 # TYPE-2 Autonomous Polyphonic Synthesizer
 
-**Version:** v0.0.0  
+<img width="689" height="525" alt="25082026-DSCF3607-Compressed" src="https://github.com/user-attachments/assets/bd30fe47-0702-4d78-bd5c-1881dde0cbd5" />
+
+
+
+**Version:** v1.0.0  
 **Author:** Alexandre Esnard  
 
 The TYPE-2 is a microcontroller-based hybrid polyphonic synthesizer. Engineered entirely around a highly optimized DSP core, it leverages fast polynomial saturation, a dual-rate processing architecture, and analog-modeled filters to deliver a heavy, studio-quality audio signal flow.
