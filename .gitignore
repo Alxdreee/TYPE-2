@@ -1,0 +1,16 @@
+# Fichiers de compilation et d'environnement IDE
+.pio/
+.vscode/
+*.bin
+*.elf
+*.hex
+*.o
+*.a
+build/
+*build/
+
+# Fichiers système OS (Windows/Mac)
+.DS_Store
+Thumbs.db
+Thumbs.db.md
+*.swp
