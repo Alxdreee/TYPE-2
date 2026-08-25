@@ -2,9 +2,9 @@
  * ==============================================================================
  * TYPE 2 - AUTONOMOUS POLYPHONIC SYNTHESIZER
  * ==============================================================================
- * Firmware   : v0.0.0
+ * Firmware   : v1.0.0
  * Author     : Alexandre Esnard
- * License    : Custom Non-Commercial Open Source
+ * License    : GNU General Public License v3.0
  * 
  * Hardware   : ESP32-S3, PCM5102A DAC, SSD1306 OLED, KY-040, 2x MPR121
  * DSP Engine : Polynomial Saturation, Hybrid Dual-Rate Architecture
