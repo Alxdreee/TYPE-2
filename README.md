@@ -57,7 +57,7 @@ Designed with accessibility in mind, it is highly affordable (around €35 in to
 * [YouTube Channel](https://www.youtube.com/@alexndreee)
 * [LinkedIn Profile](https://www.linkedin.com/in/alexandreesnard/)
 * [Reddit Development Log](https://www.reddit.com/user/Alxdreee/submitted/)
-* alexandre.esnard006@gmail.com
+* alxdreee.esn@gmail.com
 
 ## Support the Project | Donation Page
 
