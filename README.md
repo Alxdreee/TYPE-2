@@ -52,15 +52,22 @@ Designed with accessibility in mind, it is highly affordable (around €35 in to
 - [ ] Custom PCB design
 - [ ] Enclosure design and manufacturing
 
-## License & Copyright
-This project is an open-source initiative developed for the benefit of the maker and synthesizer community. 
-* **Community Use:** You are entirely free to study, modify, and build upon this code for your personal projects.
-* **Commercial Restriction:** The commercial resale of this project, its code, or any hardware derivatives based directly upon this architecture is strictly prohibited. 
-* **Patent Restriction:** No patents, trademarks, or restrictive intellectual property rights may be filed on this work or its derivatives. 
-
 ## Links & Contact
 * [GitHub Repository](https://github.com/Alxdreee)
 * [YouTube Channel](https://www.youtube.com/@alexndreee)
 * [LinkedIn Profile](https://www.linkedin.com/in/alexandreesnard/)
 * [Reddit Development Log](https://www.reddit.com/user/Alxdreee/submitted/)
 * alexandre.esnard006@gmail.com
+
+## Support the Project | Donation Page
+
+This project is 100% open-source and developed entirely on my own in my spare time. If you find it useful or like what I'm doing, you can support its development here!
+
+[Buy Me a Coffee](https://buymeacoffee.com/alexandre.esnard)
+
+
+## License & Copyright
+This project is an open-source initiative developed for the benefit of the maker and synthesizer community. 
+* **Community Use:** You are entirely free to study, modify, and build upon this code for your personal projects.
+* **Commercial Restriction:** The commercial resale of this project, its code, or any hardware derivatives based directly upon this architecture is strictly prohibited. 
+* **Patent Restriction:** No patents, trademarks, or restrictive intellectual property rights may be filed on this work or its derivatives.
