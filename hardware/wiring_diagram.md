@@ -2,8 +2,7 @@
 
 This document details the pinout and wiring connections between the ESP32-S3 microcontroller and the peripheral components for the synthesizer.
 
-<img width="1755" height="1241" alt="KiCad Schematic_page-0001" src="https://github.com/user-attachments/assets/a66d2cbe-654a-4917-8e27-6069eaa01647" />
-
+<img width="1755" height="1241" alt="Schematic_page-0001" src="https://github.com/user-attachments/assets/6f166301-a480-4199-822e-518366e256a2" />
 
 All logic levels are 3.3V. Ensure your power supply can provide sufficient current for the ESP32-S3 and the I2S DAC.
 
