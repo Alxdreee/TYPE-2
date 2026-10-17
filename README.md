@@ -1,26 +1,23 @@
 # TYPE-2 Autonomous Polyphonic Synthesizer
 
 
-
-<img width="3840" height="2160" alt="DSCF561100_01_15_16" src="https://github.com/user-attachments/assets/325f2c29-7a08-4ffa-91c3-2aea92f83564" />
-
+<img width="3840" height="2160" alt="DSCF561100_01_15_16" src="https://github.com/user-attachments/assets/78a5b79a-f6f2-4b22-ab44-9ec594395edb" />
 
 
-**Version:** v1.6.0  
+**Version:** v1.6.0
 
-**Author:** Alexandre Esnard  
-
-
-
-The TYPE-2 is a microcontroller-based hybrid polyphonic synthesizer. Engineered entirely around a highly optimized DSP core, it leverages fast polynomial saturation, a dual-rate processing architecture, and analog-modeled filters to deliver a heavy, studio-quality audio signal flow. 
+**Author:** Alexandre Esnard
 
 
+The TYPE-2 is a microcontroller-based hybrid polyphonic synthesizer. Engineered entirely around a highly optimized DSP core, it leverages fast polynomial saturation, a dual-rate processing architecture, and analog-modeled filters to deliver a heavy, studio-quality audio signal flow.
 
-With the latest updates, it now acts as a standalone hardware instrument, a Native USB MIDI controller, and a direct USB Audio streaming device. Designed with accessibility in mind, it is highly affordable (around €35 in total components) and features a near-zero difficulty build process requiring minimal wiring.
+Designed with accessibility in mind, it is highly affordable (around €35 in total components) and features a near-zero difficulty build process requiring minimal wiring.
 
 
 
 ## Hardware BOM
+
+
 
 * ESP32-S3 Microcontroller (16MB Flash, PSRAM strictly required)
 
@@ -40,23 +37,36 @@ With the latest updates, it now acts as a standalone hardware instrument, a Nati
 
 ## Core Features
 
-* **Hybrid DSP Engine:** Fast polynomial saturation, dual-rate architecture, and anti-aliased oscillators.
+* **Hybrid DSP Engine:** Fast polynomial saturation and dual-rate architecture.
 
-* **Signal Chain:** Trapezoidal 24dB/Oct State Variable Filter (SVF), Asymmetrical Tube Overdrive, and Studio Digital Delay.
-
-* **USB Connectivity:** Composite USB device featuring Native MIDI Out (with Pitch Bend and CC mapping) and a custom PCM Audio Stream Bridge via Python.
+* **Signal Chain:** Factorized 24dB/Oct Trapezoidal SVF Filter, Tube Overdrive, and Studio Digital Delay.
 
 * **User Interface:** Cylindrical rotary menu interface and responsive topological grid visualization.
+
+* **Connectivity:** Composite USB Device (Native USB MIDI Out + USB PCM Audio Stream) for direct DAW integration.
+
+
+## Repository Structure
+
+
+
+* `enclosure/` : 3D models and CAD files for the synthesizer casing.
+
+* `firmware/` : Contains the main `TYPE2.ino` firmware file and the `type2_audio_bridge.py` script for USB Audio streaming.
+
+* `hardware/` : Contains the KiCad project files (`.kicad_pro`, `.kicad_sch`, `.kicad_pcb`), the schematic/wiring diagram, and a ready-to-manufacture `Type2_v2_Gerber.zip` file.
 
 
 
 ## Setup & Installation
 
+
+
 1. **IDE Setup:** Install the Arduino IDE or PlatformIO with ESP32 board support.
 
-2. **Compiler Settings:** To ensure the DSP engine, USB Composite features, and display tasks run properly, configure your IDE with the following exact parameters:
+2. **Compiler Settings:** To ensure the DSP engine, display tasks, and USB native features run properly, configure your IDE with the following exact parameters:
 
-   * **USB Mode:** USB-OTG (TinyUSB) / Hardware CDC and JTAG
+   * **USB Mode:** USB-OTG (TinyUSB) or Hardware CDC and JTAG
 
    * **USB CDC On Boot:** Enabled
 
@@ -74,7 +84,9 @@ With the latest updates, it now acts as a standalone hardware instrument, a Nati
 
 3. **Libraries:** Install `Adafruit GFX`, `Adafruit SSD1306`, and `Adafruit MPR121`.
 
-4. **USB Audio Bridge (Optional):** To stream digital audio directly to your PC without using the hardware DAC, install Python and run `pip install pyserial sounddevice`. Then, execute the provided `type2_audio_bridge.py` script.
+4. **Wiring:** Refer to the `wiring_diagram.md` in the `hardware/` folder to route the I2S, I2C, and GPIO connections correctly.
+
+5. **USB Audio Bridge (Optional):** To stream audio directly over USB, run the `type2_audio_bridge.py` script located in the `firmware/` folder on your host machine.
 
 
 
@@ -82,19 +94,25 @@ With the latest updates, it now acts as a standalone hardware instrument, a Nati
 
 
 
-This project is proudly supported by **[PCBWay](https://www.pcbway.com/)**. 
+This project is proudly supported by **PCBWay**, who generously provided the manufacturing for the TYPE-2 printed circuit boards. Their service offers exceptional quality, which is crucial for audio applications where proper ground planes, trace routing, and impedance control directly impact the final sound quality.
 
 
 
-Turning a complex breadboard prototype into a robust, noise-free audio synthesizer requires high-quality printed circuit boards. PCBWay generously sponsored the development of the TYPE-2 by providing exceptional manufacturing services. The resulting boards feature flawless traces, perfect grounding planes (crucial for audio clarity), and crisp silkscreens. 
+The silkscreen precision on the touch pads and the fast turnaround times have been instrumental in the prototyping and finalization of this synthesizer.
 
 
 
-Their rapid prototyping service is incredibly reliable and highly recommended for hardware makers, DIY synth builders, and audio engineers. If you are planning to build your own TYPE-2 or design custom electronics, I highly encourage checking out [PCBWay.com](https://www.pcbway.com/) for fast, professional, and affordable PCB fabrication.
+If you want to build your own TYPE-2, you can use the production-ready `Type2_v2_Gerber.zip` file located in the `hardware/` folder. I highly recommend ordering your boards from PCBWay for guaranteed compatibility and professional finish.
+
+
+
+[Visit PCBWay.com to order your boards](https://www.pcbway.com/)
 
 
 
 ## Roadmap
+
+
 
 - [x] Core 7-voice polyphonic DSP engine implementation
 
@@ -110,9 +128,9 @@ Their rapid prototyping service is incredibly reliable and highly recommended fo
 
 - [x] External MIDI communication (USB/Serial)
 
-- [x] Direct USB PCM Audio streaming (Python Bridge)
-
 - [x] Custom PCB design
+
+- [x] Direct USB PCM Audio streaming (Python Bridge)
 
 - [ ] ESP32 Bluetooth communication integration
 
@@ -123,6 +141,8 @@ Their rapid prototyping service is incredibly reliable and highly recommended fo
 
 
 ## Links & Contact
+
+
 
 * [GitHub Repository](https://github.com/Alxdreee)
 
@@ -152,7 +172,11 @@ This project is 100% open-source and developed entirely on my own in my spare ti
 
 ## License & Copyright
 
+
+
 This project is an open-source initiative developed for the benefit of the maker and synthesizer community. 
+
+
 
 * **Community Use:** You are entirely free to study, modify, and build upon this code for your personal projects.
 
