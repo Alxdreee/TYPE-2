@@ -1,7 +1,6 @@
 # TYPE-2 Autonomous Polyphonic Synthesizer
 
-
-<img width="3840" height="2160" alt="DSCF561100_01_15_16" src="https://github.com/user-attachments/assets/78a5b79a-f6f2-4b22-ab44-9ec594395edb" />
+<img width="3592" height="2021" alt="17102026-DSCF561100_01_15_16" src="https://github.com/user-attachments/assets/a070da4b-b622-49cc-8b56-b6c869f34880" />
 
 
 **Version:** v1.6.0
@@ -100,13 +99,20 @@ This project is proudly supported by **PCBWay**, who generously provided the man
 
 The silkscreen precision on the touch pads and the fast turnaround times have been instrumental in the prototyping and finalization of this synthesizer.
 
-
-
 If you want to build your own TYPE-2, you can use the production-ready `Type2_v2_Gerber.zip` file located in the `hardware/` folder. I highly recommend ordering your boards from PCBWay for guaranteed compatibility and professional finish.
 
+### Hardware BOM
+* **ESP32-S3 Microcontroller Board** (ESP32-S3-DevKitC-1 form factor, 16MB Flash, OPI PSRAM required)
+* PCM5102A I2S DAC Module
+* SSD1306 128x64 I2C OLED Display
+* KY-040 Rotary Encoder
+* 1x Tactile Navigation Button
+* 2x MPR121 I2C Capacitive Touch Sensors
+* Custom TYPE-2 Motherboard PCB (or breadboard + copper tape)
 
-
-[Visit PCBWay.com to order your boards](https://www.pcbway.com/)
+> **CRITICAL ESP32-S3 PINOUT & FORM FACTOR NOTICE:**  
+> The custom PCB footprint is specifically routed for the standard **ESP32-S3-DevKitC-1** form factor featuring **44 pins (2x22 pin headers, 2.54mm pitch)** and an onboard **16MB Flash / 8MB OPI PSRAM (e.g., ESP32-S3-WROOM-1 / N16R8 module)**.  
+> Do **not** use 38-pin or compact 30-pin ESP32-S3 boards, as their power and GPIO pinouts will not align with the PCB socket and will cause short circuits. Before soldering, always verify your board's pinout against [`hardware/wiring_diagram.md`](./hardware/wiring_diagram.md) and the KiCad schematic [`hardware/Type2_v2.kicad_sch`](./hardware/Type2_v2.kicad_sch).
 
 
 
