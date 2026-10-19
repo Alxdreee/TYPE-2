@@ -2,6 +2,7 @@
 
 <img width="3592" height="2021" alt="17102026-DSCF561100_01_15_16" src="https://github.com/user-attachments/assets/a070da4b-b622-49cc-8b56-b6c869f34880" />
 
+https://youtu.be/demoCZNXgas?si=iiert4YoLO7hH3M8
 
 **Version:** v1.6.0
 
