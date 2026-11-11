@@ -1,190 +1,123 @@
-# TYPE-2 Autonomous Polyphonic Synthesizer
+# TYPE-2 — Open-Source Polyphonic Touch Synthesizer (ESP32-S3)
 
-<img width="3592" height="2021" alt="17102026-DSCF561100_01_15_16" src="https://github.com/user-attachments/assets/a070da4b-b622-49cc-8b56-b6c869f34880" />
+<img width="3592" height="2021" alt="TYPE-2 synthesizer" src="https://github.com/user-attachments/assets/a070da4b-b622-49cc-8b56-b6c869f34880" />
 
-**Version:** v1.6.0
-
+**Firmware:** v1.6.0 · **Hardware:** V2 (released) — V3 full-SMT (in development)
 **Author:** Alexandre Esnard
 
+The TYPE-2 is an open-source, touch-capacitive polyphonic synthesizer built around the ESP32-S3. Its DSP engine, written from scratch in C++, combines fast polynomial saturation, a dual-rate processing architecture and analog-modeled filters to deliver a rich, expressive sound from a ~€35 instrument.
 
-The TYPE-2 is a microcontroller-based hybrid polyphonic synthesizer. Engineered entirely around a highly optimized DSP core, it leverages fast polynomial saturation, a dual-rate processing architecture, and analog-modeled filters to deliver a heavy, studio-quality audio signal flow.
-
-Designed with accessibility in mind, it is highly affordable (around €35 in total components) and features a near-zero difficulty build process requiring minimal wiring.
-
-
-
-## Hardware BOM
-
-
-
-* ESP32-S3 Microcontroller (16MB Flash, PSRAM strictly required)
-
-* PCM5102A I2S DAC Module
-
-* SSD1306 128x64 OLED Display
-
-* KY-040 Rotary Encoder
-
-* 1x Tactile Navigation Button
-
-* 2x MPR121 I2C Capacitive Touch Sensors
-
-* Copper tape (for creating capacitive touch keys)
-
-
+> Featured on **XDA Developers** (twice) and documented in a full **Instructables** Featured build guide — see [Press & Community](#press--community).
 
 ## Core Features
 
-* **Hybrid DSP Engine:** Fast polynomial saturation and dual-rate architecture.
-
-* **Signal Chain:** Factorized 24dB/Oct Trapezoidal SVF Filter, Tube Overdrive, and Studio Digital Delay.
-
-* **User Interface:** Cylindrical rotary menu interface and responsive topological grid visualization.
-
+* **Hybrid DSP Engine:** 7-voice polyphony, fast polynomial saturation and dual-rate architecture.
+* **Signal Chain:** Factorized 24dB/Oct Trapezoidal SVF Filter, Tube Overdrive, analog slop and Studio Digital Delay.
+* **User Interface:** Cylindrical rotary menu, responsive topological grid visualization, preset management.
 * **Connectivity:** Composite USB Device (Native USB MIDI Out + USB PCM Audio Stream) for direct DAW integration.
 
+## Hardware Versions
 
-## Repository Structure
+| Version | Description | Status |
+|---|---|---|
+| **V1** | Off-the-shelf modules, hand wiring, copper-tape touch keys | Released |
+| **V2** | Custom motherboard PCB carrying the modules (ESP32-S3-DevKitC-1, DAC, OLED, MPR121) | Released, Gerbers in `hardware/` |
+| **V3** | Fully SMT two-board design, factory-assembled, PCB touch pads |In development, prototype stage |
 
+### V3 — Fully SMT, factory-assembled design
 
+V3 replaces the module stack with two custom boards designed in KiCad for turnkey PCB assembly:
 
-* `enclosure/` : 3D models and CAD files for the synthesizer casing.
+* **Backplate:** ESP32-S3-WROOM-1-N16R8, PCM5102A DAC, native USB-C (programming, MIDI, audio) with ESD protection (USBLC6-2SC6), separate low-noise LDO (LP5907) for the analog audio rail, 3.5mm line output.
+* **Frontplate:** 2x MPR121 (QFN) on two independent I2C buses, 24 touch keys etched directly on the PCB, no more copper tape.
+* **Board-to-board:** single 2x4 header, no wiring at all.
+* **Remaining hand-soldered parts:** OLED display, rotary encoder, navigation button, headers.
 
-* `firmware/` : Contains the main `TYPE2.ino` firmware file and the `type2_audio_bridge.py` script for USB Audio streaming.
+**Goal:** production-ready Gerber, BOM and CPL files (with LCSC part numbers, Basic parts prioritized) so that anyone can order an assembled TYPE-2 in a few clicks. These files will be published once the prototype is validated.
 
-* `hardware/` : Contains the KiCad project files (`.kicad_pro`, `.kicad_sch`, `.kicad_pcb`), the schematic/wiring diagram, and a ready-to-manufacture `Type2_v2_Gerber.zip` file.
+### V2 Hardware BOM
 
-
-
-## Setup & Installation
-
-
-
-1. **IDE Setup:** Install the Arduino IDE or PlatformIO with ESP32 board support.
-
-2. **Compiler Settings:** To ensure the DSP engine, display tasks, and USB native features run properly, configure your IDE with the following exact parameters:
-
-   * **USB Mode:** USB-OTG (TinyUSB) or Hardware CDC and JTAG
-
-   * **USB CDC On Boot:** Enabled
-
-   * **CPU Frequency:** 240MHz (WiFi)
-
-   * **Flash Mode:** QIO 80MHz
-
-   * **Flash Size:** 16MB (128Mb)
-
-   * **Partition Scheme:** 16M Flash (3MB APP/9.9MB FATFS)
-
-   * **PSRAM:** OPI PSRAM
-
-   * **Upload Speed:** 115200
-
-3. **Libraries:** Install `Adafruit GFX`, `Adafruit SSD1306`, and `Adafruit MPR121`.
-
-4. **Wiring:** Refer to the `wiring_diagram.md` in the `hardware/` folder to route the I2S, I2C, and GPIO connections correctly.
-
-5. **USB Audio Bridge (Optional):** To stream audio directly over USB, run the `type2_audio_bridge.py` script located in the `firmware/` folder on your host machine.
-
-
-
-## PCB Design
-
-
-
-This project is proudly supported by **PCBWay**, who generously provided the manufacturing for the TYPE-2 printed circuit boards. Their service offers exceptional quality, which is crucial for audio applications where proper ground planes, trace routing, and impedance control directly impact the final sound quality.
-
-
-
-The silkscreen precision on the touch pads and the fast turnaround times have been instrumental in the prototyping and finalization of this synthesizer.
-
-If you want to build your own TYPE-2, you can use the production-ready `Type2_v2_Gerber.zip` file located in the `hardware/` folder. I highly recommend ordering your boards from PCBWay for guaranteed compatibility and professional finish.
-
-### Hardware BOM
-* **ESP32-S3 Microcontroller Board** (ESP32-S3-DevKitC-1 form factor, 16MB Flash, OPI PSRAM required)
+* ESP32-S3-DevKitC-1 board, 44 pins (ESP32-S3-WROOM-1 N16R8: 16MB Flash, 8MB OPI PSRAM **required**)
 * PCM5102A I2S DAC Module
 * SSD1306 128x64 I2C OLED Display
 * KY-040 Rotary Encoder
 * 1x Tactile Navigation Button
 * 2x MPR121 I2C Capacitive Touch Sensors
-* Custom TYPE-2 Motherboard PCB (or breadboard + copper tape)
+* TYPE-2 V2 motherboard PCB (or breadboard + copper tape for V1)
 
-> **CRITICAL ESP32-S3 PINOUT & FORM FACTOR NOTICE:**  
-> The custom PCB footprint is specifically routed for the standard **ESP32-S3-DevKitC-1** form factor featuring **44 pins (2x22 pin headers, 2.54mm pitch)** and an onboard **16MB Flash / 8MB OPI PSRAM (e.g., ESP32-S3-WROOM-1 / N16R8 module)**.  
-> Do **not** use 38-pin or compact 30-pin ESP32-S3 boards, as their power and GPIO pinouts will not align with the PCB socket and will cause short circuits. Before soldering, always verify your board's pinout against [`hardware/wiring_diagram.md`](./hardware/wiring_diagram.md) and the KiCad schematic [`hardware/Type2_v2.kicad_sch`](./hardware/Type2_v2.kicad_sch).
+> **V2 ESP32-S3 FORM FACTOR NOTICE:**
+> The V2 PCB is routed for the standard **ESP32-S3-DevKitC-1** form factor (**44 pins, 2x22 headers, 2.54mm pitch**).
+> Do **not** use 38-pin or 30-pin ESP32-S3 boards: their power and GPIO pinouts will not match and will cause short circuits. Always check your board against [`hardware/wiring_diagram.md`](./hardware/wiring_diagram.md) and [`hardware/Type2_v2.kicad_sch`](./hardware/Type2_v2.kicad_sch) before soldering.
 
+## Repository Structure
 
+* `enclosure/` : 3D models and CAD files for the synthesizer casing.
+* `firmware/` : Main `TYPE2.ino` firmware and the `type2_audio_bridge.py` USB audio streaming script.
+* `hardware/` : V2 KiCad project, wiring diagram and production-ready `Type2_v2_Gerber.zip`.
+* `[hardware/V3/]` : V3 KiCad projects (backplate + frontplate) — work in progress.
+
+## Setup & Installation
+
+1. **IDE Setup:** Install the Arduino IDE or PlatformIO with ESP32 board support.
+2. **Compiler Settings:**
+   * **USB Mode:** USB-OTG (TinyUSB) or Hardware CDC and JTAG
+   * **USB CDC On Boot:** Enabled
+   * **CPU Frequency:** 240MHz (WiFi)
+   * **Flash Mode:** QIO 80MHz
+   * **Flash Size:** 16MB (128Mb)
+   * **Partition Scheme:** 16M Flash (3MB APP/9.9MB FATFS)
+   * **PSRAM:** OPI PSRAM
+   * **Upload Speed:** 115200
+3. **Libraries:** Install `Adafruit GFX`, `Adafruit SSD1306` and `Adafruit MPR121`.
+4. **Wiring (V1/V2):** Follow `hardware/wiring_diagram.md` for the I2S, I2C and GPIO connections.
+5. **USB Audio Bridge (optional):** Run `firmware/type2_audio_bridge.py` on your computer to stream audio over USB.
+
+## Press & Community
+
+* **Instructables:** [DIY €35 Polyphonic Synthesizer — the TYPE-2](https://www.instructables.com/DIY-35-Polyphonic-Synthesizer-the-TYPE-2/)
+* **Reddit:** [Development log](https://www.reddit.com/user/Alxdreee/submitted/)
+* **XDA Developers:** [Someone turned their ESP32 into a touch-activated polyphonic synthesizer](https://www.xda-developers.com/someone-turned-their-esp32-into-a-touch-activated-polyphonic-synthesizer/)
+* **XDA Developers:** [This open-source ESP32 touch synth just got a massive upgrade](https://www.xda-developers.com/this-open-source-esp32-touch-synth-just-got-a-massive-upgrade-and-its-only-35-to-make/)
+
+## Manufacturing & Acknowledgements
+
+The V2 Gerber files are standard and can be ordered from any PCB manufacturer.
+Thanks to **PCBWay** for sponsoring the manufacturing of the TYPE-2 V2 boards.
 
 ## Roadmap
 
-
-
-- [x] Core 7-voice polyphonic DSP engine implementation
-
-- [x] Tube overdrive, analog slop, and delay effects
-
+- [x] 7-voice polyphonic DSP engine
+- [x] Tube overdrive, analog slop and delay effects
 - [x] Real-time topological grid UI and hierarchical menu
-
-- [x] Advanced firmware optimization
-
-- [x] Improved menu navigation
-
-- [x] Manage the creation of presets from a dedicated menu
-
+- [x] Firmware optimization and improved menu navigation
+- [x] Preset creation menu
 - [x] External MIDI communication (USB/Serial)
-
-- [x] Custom PCB design
-
-- [x] Direct USB PCM Audio streaming (Python Bridge)
-
-- [ ] ESP32 Bluetooth communication integration
-
-- [ ] Battery management and portable power components integration
-
-- [ ] Enclosure design and manufacturing
-
-
+- [x] Direct USB PCM audio streaming (Python bridge)
+- [x] Custom PCB design (V2)
+- [ ] **V3 full-SMT two-board design** (schematics done, layout & prototype in progress)
+- [ ] V3 one-click assembly files (Gerber / BOM / CPL)
+- [ ] Enclosure for V3
+- [ ] ESP32 Bluetooth integration
+- [ ] Battery management for portable use
 
 ## Links & Contact
 
-
-
-* [GitHub Repository](https://github.com/Alxdreee)
-
-* [YouTube Channel](https://www.youtube.com/@alexndreee)
-
-* [LinkedIn Profile](https://www.linkedin.com/in/alexandreesnard/)
-
-* [Reddit Development Log](https://www.reddit.com/user/Alxdreee/submitted/)
-
+* [GitHub](https://github.com/Alxdreee)
+* [YouTube](https://www.youtube.com/@alexndreee)
+* [LinkedIn](https://www.linkedin.com/in/alexandreesnard/)
 * [Instructables](https://www.instructables.com/DIY-35-Polyphonic-Synthesizer-the-TYPE-2/)
+* Contact / collaborations: alxdreee.esn@gmail.com
 
-* alxdreee.esn@gmail.com
+## Support the Project
 
-
-
-## Support the Project | Donation Page
-
-
-
-This project is 100% open-source and developed entirely on my own in my spare time. If you find it useful or like what I'm doing, you can support its development here!
-
-
+TYPE-2 is developed entirely on my own, in my spare time, as a student. If you like the project, you can support it here:
 
 [Buy Me a Coffee](https://buymeacoffee.com/alexandre.esnard)
 
-
-
 ## License & Copyright
 
+This project is a community initiative for makers and synthesizer enthusiasts.
 
-
-This project is an open-source initiative developed for the benefit of the maker and synthesizer community. 
-
-
-
-* **Community Use:** You are entirely free to study, modify, and build upon this code for your personal projects.
-
-* **Commercial Restriction:** The commercial resale of this project, its code, or any hardware derivatives based directly upon this architecture is strictly prohibited. 
-
-* **Patent Restriction:** No patents, trademarks, or restrictive intellectual property rights may be filed on this work or its derivatives.
+* **Community Use:** You are free to study, modify and build upon this project for personal use.
+* **Commercial Restriction:** Commercial resale of this project, its code, or hardware derivatives based directly on this architecture is prohibited.
+* **Patent Restriction:** No patents, trademarks or restrictive IP rights may be filed on this work or its derivatives.
